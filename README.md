@@ -23,4 +23,4 @@ Future Planned Features
 The Project
 ===========
 
-If you're looking to join up, send an email to admin@filecrypt.ws or frank@filecrypt.ws or mention @filecrypt
+If you're looking to join up, send an email to admin@filecrypt.ws ([520B9A41](https://www.filecrypt.ws/keys/520b9a41.txt)) or frank@filecrypt.ws ([FD2EA3E8](https://www.filecrypt.ws/keys/fd2ea3e8.txt)) or mention [@filecrypt](https://www.twitter.com/filecrypt) to get in touch. Of course feel free to fork and file pull requests.
