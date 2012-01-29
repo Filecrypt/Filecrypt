@@ -168,7 +168,8 @@ class Encryption {
         do {
             $hash = hash_hmac('sha1', $hash, $key);
         } while ($runs++ < 5000);
-        return $hash;
+	// XXX: This is bad but it helps get rid of that annoying too-large warning for AES256
+        return substr($hash, 0, 32);
     }
 
     /**
@@ -179,7 +180,7 @@ class Encryption {
     }
 
     public function unarmor($data) {
-        return base64_decode($data);
+	return base64_decode($data);
     }
 
 }
