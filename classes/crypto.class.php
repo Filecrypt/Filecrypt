@@ -171,5 +171,12 @@ class Encryption {
         return $hash;
     }
 
+    /**
+     * ASCII-Armor the data
+     */
+    public function armor($data) {
+	return base64_encode($data);
+    }
+
 }
 ?>

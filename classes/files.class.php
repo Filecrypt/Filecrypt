@@ -19,7 +19,8 @@ class File {
 	protected function symmetric_encrypt() {
 		require_once 'crypto.class.php';
 		$enc = new Encryption(CRYPTO_CIPHER, CRYPTO_MODE);
-		echo $enc->encrypt('test','key');
+		$data = $enc->encrypt('test','key');
+		echo $enc->armor($data);
 		die();
 	}
 
