@@ -178,5 +178,9 @@ class Encryption {
 	return base64_encode($data);
     }
 
+    public function unarmor($data) {
+        return base64_decode($data);
+    }
+
 }
 ?>
