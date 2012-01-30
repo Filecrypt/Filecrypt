@@ -8,24 +8,40 @@ class File {
 	private $location;
 	private $size;
 
-	function __construct() {
-		$this->name = $_FILES['uploadedfile']['name'];
-		$this->type = $_FILES['uploadedfile']['type'];
-		$this->location = $_FILES['uploadedfile']['tmp_name'];
-		$this->size = $_FILES['uploadedfile']['size'];
-		$this->symmetric_encrypt();
+	function __construct($form_name) {
+		if(!is_uploaded_file($_FILES[$form_name]['name']))
+			return false;
+
+		if(!$this->check_upload())
+			return false;
+
+		$this->name = $_FILES[$form_name]['name'];
+		$this->type = $_FILES[$form_name]['type'];
+		$this->location = $_FILES[$form_name]['tmp_name'];
+		$this->size = $_FILES[$form_name]['size'];
+		$this->store_file($this->location, FILE_STORE);
 	}
 
 	protected function symmetric_encrypt() {
-		require_once 'crypto.class.php';
-		$enc = new Encryption(CRYPTO_CIPHER, CRYPTO_MODE);
-		$data = $enc->encrypt('test','key');
-		echo $enc->armor($data);
-		die();
+		$enc = new Encryption(CRYPTO_CIPHER, CRYPTO_MODE, CRYPTO_SITE_KEY);
+		return null;
 	}
 
-	protected function store_file() {
-		
+	protected function store_file($file, $location) {
+		// TODO: Make this throw up or something
+		if(move_uploaded_file($file, $location)) {
+			$this->location = $location;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function check_upload() {
+		if($_FILES[$form_name]['error'] == UPLOAD_ERR_OK)
+			return true;
+		else
+			return false;
 	}
 
 }
